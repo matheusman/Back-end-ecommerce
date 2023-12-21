@@ -1,16 +1,25 @@
-version: "3"
+version: "version"
 
 services:
-  db:
-    image: mysql
-    container_name: db-mysql-dock
-    restart: always
+  app:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    container_name: prisma-api
     ports:
-      - 3307:3306
-    env_file:
-      - ./config/db.env
+      - "3000:3000"
     volumes:
-      - db:/var/lib/mysql
-
-volumes:
-  db: ~
+      - ".:/home/node/app"
+    depends_on:
+      - db
+  db:
+    build: .docker/postgres
+    container_name: "prisma-api-db"
+    restart: always
+    tty: true
+    ports:
+      - "5432:5432"
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=value

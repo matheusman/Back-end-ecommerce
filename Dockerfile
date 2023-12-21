@@ -1,13 +1,9 @@
 FROM node
 
-WORKDIR /app
+RUN apk add --no-cache bash
 
-COPY package*.json ./
+RUN npm install -g @nest/cli
 
-COPY pnpm-lock.yaml ./
+USER node
 
-COPY . ./
-
-EXPOSE 3000
-
-CMD [ "pnpm", "run", "dev" ]
+WORKDIR /home/node/app
