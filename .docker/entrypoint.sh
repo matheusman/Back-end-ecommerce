@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pnpm install
-pnpm run build
-pnpm run start:dev
-pnpm install prisma --save-dev
+npm install
+npm run build
+npm run start:dev
+npm install prisma --save-dev

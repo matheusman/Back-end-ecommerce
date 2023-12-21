@@ -1,8 +1,8 @@
 FROM node
 
-RUN apk add --no-cache bash
+RUN npm install -g @nestjs/cli
 
-RUN npm install -g @nest/cli
+RUN npm install -g pnpm
 
 USER node
 
